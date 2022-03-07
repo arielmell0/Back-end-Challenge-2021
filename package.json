@@ -1,0 +1,28 @@
+{
+  "name": "back-end-challenge-2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arielmell0/Back-end-Challenge-2021.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arielmell0/Back-end-Challenge-2021/issues"
+  },
+  "homepage": "https://github.com/arielmell0/Back-end-Challenge-2021#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
