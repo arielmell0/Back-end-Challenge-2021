@@ -8,5 +8,5 @@ const homeRoute = require('./routes/home')
 app.use(homeRoute)
 
 app.listen(port, () => {
-    console.log(`Servidor rodando em https://localhost:${port}`)
+    console.log(`Servidor rodando em http://localhost:${port}`)
 })
