@@ -29,3 +29,36 @@ exports.getArticleByID = async(req, res) => {
         console.log('Um erro ocorreu, código: ', error)
     }
 }
+
+exports.createArticle = async(req, res) => {
+    const {featured, title, url, imageUrl, newsSite,
+    summary, publishedAt, launches, events} = req.body
+
+    const Article = {
+        featured,
+        title,
+        url,
+        imageUrl,
+        newsSite,
+        summary,
+        publishedAt,
+        launches,
+        events
+    }
+
+    if(!featured) {
+        res.status(422).json({ erro: 'Você precisa definir se o artigo é um destaque!' })
+    } else if(!title) {
+        res.status(422).json({ erro: 'Você precisa definir um titulo para a notícia.' })
+    } else if(!url) {
+        res.status(422).json({ erro: 'Você precisa colocar a url da noticia.' })
+    } else if(!imageUrl) {
+        res.status(422).json({ erro: 'A notícia precisa ter uma imagem.' })
+    } else if(!newsSite) {
+        res.status(422).json({ erro: 'Você precisa informar o site da noticia.' })
+    } else if(!summary) {
+        res.status(422).json({ erro: 'A noticia precisa ter um sumário!'})
+    } else if(!publishedAt) {
+        res.status(422).json({ erro: 'Você precisa informar a data da publicação da noticia.'})
+    } 
+}
