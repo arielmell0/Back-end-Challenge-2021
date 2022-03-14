@@ -34,7 +34,7 @@ exports.createArticle = async(req, res) => {
     const {featured, title, url, imageUrl, newsSite,
     summary, publishedAt, launches, events} = req.body
 
-    const Article = {
+    const article = new ArticleModel({
         featured,
         title,
         url,
@@ -44,7 +44,7 @@ exports.createArticle = async(req, res) => {
         publishedAt,
         launches,
         events
-    }
+    })
 
     if(!featured) {
         res.status(422).json({ erro: 'Você precisa definir se o artigo é um destaque!' })
@@ -60,5 +60,17 @@ exports.createArticle = async(req, res) => {
         res.status(422).json({ erro: 'A noticia precisa ter um sumário!'})
     } else if(!publishedAt) {
         res.status(422).json({ erro: 'Você precisa informar a data da publicação da noticia.'})
-    } 
+    }
+
+    const articleExists = await ArticleModel.findOne({ title: title })
+    if(articleExists) res.status(422).json({ erro: "Ops! Parece que uma notícia com esse título já foi cadastrada."})
+    
+    try {
+        await article.save()
+
+        res.status(201).json({ message: "Notícia cadastrada com sucesso!" })
+    } catch (error) {
+        console.log("Código do erro: ", error)
+        res.status(500).json({ message: "Ops! ocorreu um erro no servidor!"})
+    }
 }
